@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Udder_Deflate>
+            <version>0.1.0</version>
+        </Udder_Deflate>
+    </modules>
+    <global>
+        <models>
+            <udder_deflate>
+                <class>Udder_Deflate_Model</class>
+                <resourceModel>udder_deflate_resource</resourceModel>
+            </udder_deflate>
+            <udder_deflate_resource>
+                <class>Udder_Deflate_Model_Resource</class>
+                <entities>
+                    <image>
+                        <table>udder_deflate_image</table>
+                    </image>
+                </entities>
+            </udder_deflate_resource>
+        </models>
+
+        <blocks>
+            <udder_deflate>
+                <class>Udder_Deflate_Block</class>
+            </udder_deflate>
+        </blocks>
+
+        <helpers>
+            <udder_deflate>
+                <class>Udder_Deflate_Helper</class>
+            </udder_deflate>
+        </helpers>
+
+        <resources>
+            <udder_deflate_setup>
+                <setup>
+                    <module>Udder_Deflate</module>
+                </setup>
+            </udder_deflate_setup>
+        </resources>
+    </global>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <udder_deflate>
+                    <file>udder/deflate.xml</file>
+                </udder_deflate>
+            </updates>
+        </layout>
+
+        <events>
+            <catalog_product_save_after>
+                <observers>
+                    <udder_deflate_compress_catalog_image>
+                        <type>singleton</type>
+                        <class>udder_deflate/observer</class>
+                        <method>catalogImageUpload</method>
+                    </udder_deflate_compress_catalog_image>
+                </observers>
+            </catalog_product_save_after>
+        </events>
+    </adminhtml>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Udder_Deflate before="Mage_Adminhtml">Udder_Deflate_Adminhtml</Udder_Deflate>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <frontend>
+        <routers>
+            <deflate>
+                <use>standard</use>
+                <args>
+                    <module>Udder_Deflate</module>
+                    <frontName>deflate</frontName>
+                </args>
+            </deflate>
+        </routers>
+    </frontend>
+
+    <default>
+        <udder_deflate>
+            <general>
+                <type>lossless</type>
+            </general>
+            <areas>
+                <catalog_images>1</catalog_images>
+                <catalog_images_resized>1</catalog_images_resized>
+                <cms_images>1</cms_images>
+                <skin_images>1</skin_images>
+            </areas>
+        </udder_deflate>
+    </default>
+
+    <crontab>
+        <jobs>
+            <udder_deflate_process_images>
+                <schedule>
+                    <cron_expr>0 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>udder_deflate/cron::processImages</model>
+                </run>
+            </udder_deflate_process_images>
+        </jobs>
+    </crontab>
+</config>

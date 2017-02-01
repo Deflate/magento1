@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Udder_Deflate>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Udder_Deflate>
+    </modules>
+</config>

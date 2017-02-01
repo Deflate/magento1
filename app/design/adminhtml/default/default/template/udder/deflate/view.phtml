@@ -1,0 +1,134 @@
+<?php
+/* @var $this Udder_Deflate_Block_Adminhtml_Images_View */
+/* @var $image Udder_Deflate_Model_Image */
+$image = $this->getImage();
+?>
+<div class="content-header">
+    <h3 class="icon-head"><?php echo $this->__('Results for: %s', $image->getData('name')); ?></h3>
+    <p class="form-buttons">
+        <button id="back" title="Back" type="button" class="scalable back" onclick="setLocation('<?php echo Mage::helper('adminhtml')->getUrl('*/*/index'); ?>')" style=""><span><span><span>Back</span></span></span></button>
+        <?php if($this->canViewOriginal()): ?>
+            <button id="revert" title="Reset" type="button" class="scalable " onclick="setLocation('<?php echo Mage::helper('adminhtml')->getUrl('*/*/revert', array('id' => $image->getId())); ?>')" style=""><span><span><span><?php echo $this->__('Revert to Original'); ?></span></span></span></button>
+        <?php endif; ?>
+    </p>
+</div>
+
+<div class="content deflate-content">
+    <div class="results">
+        <div class="entry-edit">
+            <div id="page_tabs_main_section_content" style="">
+                <div class="entry-edit">
+                    <div class="entry-edit-head">
+                        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Compression Information'); ?></h4>
+                        <div class="form-buttons"></div>
+                    </div>
+                    <div class="fieldset" id="page_base_fieldset">
+                        <div class="hor-scroll">
+                            <table cellspacing="0" class="form-list">
+                                <tbody>
+                                <tr>
+                                    <td class="label"><label><?php echo $this->__('Percentage Saved:'); ?></label></td>
+                                    <td class="value"><?php echo ceil(Mage::helper('udder_deflate')->percentageDifference($image->getData('original_size'), $image->getData('deflated_size'))); ?>%</td>
+                                </tr>
+                                    <tr>
+                                        <td class="label"><label><?php echo $this->__('Location:'); ?></label></td>
+                                        <td class="value"><?php echo $this->getTypeLabel($image->getData('magento_type')); ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label"><label><?php echo $this->__('Compression Type:'); ?></label></td>
+                                        <td class="value"><?php echo ucfirst($image->getData('compression_type')); ?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="comparison original-url">
+        <div class="image">
+            <div class="type">
+                <?php echo $this->__('Original'); ?>
+            </div>
+            <?php if($this->canViewOriginal()): ?>
+                <img src="<?php echo $image->getData('original_url'); ?>" />
+                <div class="options">
+                    <button title="Download" type="button" class="scalable download" onclick="setLocation('<?php echo $image->getData('original_url'); ?>')" style=""><?php echo $this->__('Download'); ?></button>
+                </div>
+            <?php else: ?>
+                <p class="cant-view"><?php echo $this->__('This image was compressed with a free account, due to this you\'re unable to view, revert and download the original image.'); ?></p>
+            <?php endif; ?>
+            <div class="size">
+                <?php echo Mage::helper('udder_deflate')->readableSize($image->getData('original_size')); ?>
+            </div>
+        </div>
+    </div>
+    <div class="comparison last deflated-url">
+        <div class="image">
+            <div class="type">
+                <?php echo $this->__('Deflated'); ?>
+            </div>
+            <img src="<?php echo $image->getData('deflated_url'); ?>" />
+            <div class="size">
+                <?php echo Mage::helper('udder_deflate')->readableSize($image->getData('deflated_size')); ?>
+            </div>
+            <div class="options">
+                <button title="Download" type="button" class="scalable download" onclick="setLocation('<?php echo $image->getData('deflated_url'); ?>')" style=""><?php echo $this->__('Download'); ?></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    .deflate-content .results {
+        float: left;
+        width: 25%;
+        margin-right: 2.5%;
+    }
+    .deflate-content .comparison {
+        float: left;
+        width: 35%;
+        margin-right: 2.5%;
+    }
+    .deflate-content .comparison.last {
+        margin-right: 0;
+    }
+    .deflate-content .comparison .image {
+        text-align: center;
+        padding: 20px 0;
+        position: relative;
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAACtJREFUGBljfPz48X8GNCArK8uIJsTAhC6Aiz+ACjEcDXIjNg8OoBuJthoAA5IHu1lsmdoAAAAASUVORK5CYII=) repeat;
+    }
+    .deflate-content .comparison .image .cant-view {
+        width: 70%;
+        margin: 40px auto;
+        background: white;
+        padding: 18px 12px;
+    }
+    .deflate-content .comparison .image img {
+        max-width: 100%;
+    }
+    .deflate-content .comparison .image .type, .deflate-content .comparison .image .size {
+        font-size: 16px;
+        background: #616161;
+        color: white;
+        position: absolute;
+        top: 0;
+        z-index: 10;
+        padding: 4px 10px;
+    }
+    .deflate-content .comparison .image .type {
+         left: 0;
+     }
+    .deflate-content .comparison .image .size {
+        right: 0;
+    }
+    .deflate-content .comparison .image .options {
+        width: 100%;
+        margin: 20px 0 0 0;
+    }
+    .deflate-content .form-list td.label, .deflate-content .form-list td.label label {
+        width: auto;
+    }
+</style>

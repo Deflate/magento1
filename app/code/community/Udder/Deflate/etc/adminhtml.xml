@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <udder_deflate translate="title">
+                                        <title>Deflate - Image Compression</title>
+                                        <sort_order>100</sort_order>
+                                    </udder_deflate>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <menu>
+        <system>
+            <children>
+                <udder_deflate translate="title" module="udder_deflate">
+                    <title>Image Compression</title>
+                    <action>adminhtml/deflate/index</action>
+                </udder_deflate>
+            </children>
+        </system>
+    </menu>
+</config>

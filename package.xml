@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+    <name>Udder_Deflate</name>
+    <version>0.1.0</version>
+    <stability>stable</stability>
+    <license uri="http://opensource.org/licenses/mit-license.php">MIT License</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Optimise all of your stores images using Deflate.io and enhance the performance of your website</summary>
+    <description>Optimise all of your stores images using Deflate.io and enhance the performance of your website</description>
+    <notes>Optimise all of your stores images using Deflate.io and enhance the performance of your website</notes>
+    <authors><author><name>Dave Macaulay</name><user>dave</user><email>dave@udder.io</email></author></authors>
+    <date>2016-01-10</date>
+    <time>13:31:24</time>
+    <contents><target name="magecommunity"><dir name="Udder"><dir name="Deflate"><dir name="Block"><dir name="Adminhtml"><dir name="Images"><file name="Grid.php" hash="0807537d3c4bd48b2681661871f69613"/><file name="View.php" hash="d19bae728b52ea030f467602350fe406"/></dir><file name="Images.php" hash="a30143e5415391c8b785c4c5c7795710"/><dir name="System"><dir name="Config"><dir name="Form"><dir name="Field"><file name="Link.php" hash="bc5e541382dab941e136eba1bed963e6"/></dir></dir></dir></dir></dir></dir><dir name="Helper"><file name="Data.php" hash="30f4f7a84af17020f90f531c259e8a72"/></dir><dir name="Model"><file name="Abstract.php" hash="d4c15b449d161b5b470066f2b509ceea"/><file name="Compress.php" hash="5417c086460995c9d3e5bc1faacdc6cb"/><file name="Cron.php" hash="ee3e0d5fcaa1cdd955fc093022e19822"/><file name="Image.php" hash="e104c49ec2403dba0eaa947b383d9c80"/><file name="Observer.php" hash="b5e85dd7e5bc69cb28978a6c81d57712"/><dir name="Resource"><dir name="Image"><file name="Collection.php" hash="e0b2409e3fb43ca1f48150b3f780f51a"/></dir><file name="Image.php" hash="a82b561d45089954c3a06caadf025da5"/></dir><file name="Scan.php" hash="5ab97e71b2a36419e1cc43cd4675e118"/><dir name="System"><dir name="Config"><dir name="Source"><file name="Themes.php" hash="3d3e892b5df3eab01c029536c774f93b"/><file name="Type.php" hash="da20e5e625452d45bf3e7a5e4cf266ac"/></dir></dir></dir></dir><dir name="controllers"><dir name="Adminhtml"><file name="DeflateController.php" hash="e1248c2e51e4ce368e54b6846d9784dc"/></dir><file name="IndexController.php" hash="23dad01567e61e5529dd388480a19680"/></dir><dir name="etc"><file name="adminhtml.xml" hash="5955c4802972fe54fee6e51475966ada"/><file name="config.xml" hash="de14fd9e5cdc1865f4c40fcb9777fcd8"/><file name="system.xml" hash="efb541c5bfed957a80d1233bce5a1e35"/></dir><dir name="sql"><dir name="udder_deflate_setup"><file name="install-0.1.0.php" hash="0da86ca6f731c602fcc95ab8b465bd40"/></dir></dir></dir></dir></target><target name="magedesign"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="layout"><dir name="udder"><file name="deflate.xml" hash="550b19851cebf0a44614abb431d3d2b5"/></dir></dir><dir name="template"><dir name="udder"><dir name="deflate"><file name="view.phtml" hash="65aaefe50cc9b69cc7b8e7e24ad1d25f"/></dir></dir></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Udder_Deflate.xml" hash="e18201909023b8ae86efbeea3d2cb48c"/></dir></target><target name="magelib"><dir name="Deflate"><file name="Sdk.php" hash="9b4682807b1e7fc8faf91682dd671310"/></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.2.1</min><max>6.0.0</max></php><package><name/><channel>connect.magentocommerce.com/core</channel><min/><max/></package></required></dependencies>
+</package>

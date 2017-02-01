@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<layout>
+
+    <!-- Grid of images -->
+    <adminhtml_deflate_index>
+        <reference name="content">
+            <block type="udder_deflate/adminhtml_images" name="deflate.images" />
+        </reference>
+    </adminhtml_deflate_index>
+
+    <!-- Ajax Grid -->
+    <adminhtml_deflate_grid>
+        <block type="udder_deflate/adminhtml_images_grid" name="root" output="toHtml" />
+    </adminhtml_deflate_grid>
+
+    <!-- Viewing an individual image -->
+    <adminhtml_deflate_view>
+        <reference name="content">
+            <block type="udder_deflate/adminhtml_images_view" name="deflate.images.view" template="udder/deflate/view.phtml" />
+        </reference>
+    </adminhtml_deflate_view>
+
+</layout>
