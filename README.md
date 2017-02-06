@@ -43,10 +43,10 @@ Once that command is completed you'll need to clear your caches and the module w
 ## Configuration
 The module contains a number of configuration options that can be altered through `System > Configuration > Deflate - Image Compression`. The first step you'll need to take is linking your Deflate account, you can either pull your API key & secret manually from your account or use our account link functionality.
 
-#### Compress Settings
+### Compress Settings
 **Compression Type:** The type of compression you wish to complete on all images found by the module.
 
-#### Compression Areas
+### Compression Areas
 This section allows you to define which images Deflate should automatically compress
 
 **Catalog Images**: Compress all images associated with products or categories.
