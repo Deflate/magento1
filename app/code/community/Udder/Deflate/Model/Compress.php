@@ -51,9 +51,6 @@ class Udder_Deflate_Model_Compress extends Udder_Deflate_Model_Abstract
         // Start at array key index 0
         $batchNumber = 0;
 
-        // Retrieve the total number of images
-        $totalImages = $images->getSize();
-
         // Iterate through the images
         foreach ($images as $image) {
 
@@ -140,7 +137,7 @@ class Udder_Deflate_Model_Compress extends Udder_Deflate_Model_Abstract
     /**
      * Handle a callback from Deflate
      *
-     * @return $this
+     * @return $this|bool
      */
     public function handleCallback()
     {
@@ -264,10 +261,10 @@ class Udder_Deflate_Model_Compress extends Udder_Deflate_Model_Abstract
     /**
      * Replace the image on the file system
      *
-     * @param Udder_Deflate_Model_Image $image
-     * @param                           $type
+     * @param \Udder_Deflate_Model_Image $image
+     * @param string                     $type
      *
-     * @return Udder_Deflate_Model_Image
+     * @return bool
      */
     public function replaceImage(Udder_Deflate_Model_Image $image, $type = 'deflated_url')
     {
@@ -294,5 +291,4 @@ class Udder_Deflate_Model_Compress extends Udder_Deflate_Model_Abstract
             }
         }
     }
-
 }

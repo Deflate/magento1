@@ -33,5 +33,4 @@ class Udder_Deflate_Model_System_Config_Source_Type
             Udder_Deflate_Model_Compress::TYPE_LOSSY    => Mage::helper('udder_deflate')->__('Lossy'),
         );
     }
-
 }

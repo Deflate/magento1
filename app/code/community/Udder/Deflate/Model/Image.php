@@ -76,5 +76,4 @@ class Udder_Deflate_Model_Image extends Mage_Core_Model_Abstract
             return false;
         }
     }
-
 }

@@ -36,5 +36,4 @@ class Udder_Deflate_Model_System_Config_Source_Themes
 
         return $options;
     }
-
 }

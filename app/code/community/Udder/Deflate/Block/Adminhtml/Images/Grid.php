@@ -260,5 +260,4 @@ class Udder_Deflate_Block_Adminhtml_Images_Grid extends Mage_Adminhtml_Block_Wid
 
         return $this;
     }
-
 }

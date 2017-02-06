@@ -28,6 +28,4 @@ class Udder_Deflate_Block_Adminhtml_Images extends Mage_Adminhtml_Block_Widget_G
             'class'   => 'add',
         ));
     }
-
 }
-

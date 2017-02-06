@@ -17,8 +17,6 @@ class Udder_Deflate_Block_Adminhtml_System_Config_Form_Field_Link
      */
     public function render(Varien_Data_Form_Element_Abstract $element)
     {
-        $useContainerId = $element->getData('use_container_id');
-
         return sprintf('<tr class="deflate-link-button" id="row_%s"><td></td><td colspan="4" id="%s" style="padding: 10px 4px;">%s</td></tr>',
             $element->getHtmlId(), $element->getHtmlId(), $this->getLinkButton()
         );

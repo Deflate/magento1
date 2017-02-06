@@ -12,5 +12,4 @@ class Udder_Deflate_Model_Resource_Image_Collection extends Mage_Core_Model_Reso
     {
         $this->_init('udder_deflate/image');
     }
-
 }

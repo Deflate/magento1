@@ -237,5 +237,4 @@ class Udder_Deflate_Model_Scan extends Udder_Deflate_Model_Abstract
 
         return $directories;
     }
-
 }

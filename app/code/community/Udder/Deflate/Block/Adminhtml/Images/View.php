@@ -7,7 +7,6 @@
  */
 class Udder_Deflate_Block_Adminhtml_Images_View extends Mage_Core_Block_Template
 {
-
     /**
      * Return the current image
      *
@@ -44,5 +43,4 @@ class Udder_Deflate_Block_Adminhtml_Images_View extends Mage_Core_Block_Template
 
         return false;
     }
-
 }
