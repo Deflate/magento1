@@ -69,6 +69,12 @@ class Udder_Deflate_Adminhtml_DeflateController extends Mage_Adminhtml_Controlle
             $image = Mage::getModel('udder_deflate/image')->load($id);
             if ($image && $image->getId()) {
 
+                // Has the image already been compressed?
+                if ($image->getStatus() == Udder_Deflate_Model_Image::STATUS_COMPLETE) {
+                    $this->_getSession()->addSuccess($this->__('This image has already been compressed.'));
+                    return $this->_redirectReferer();
+                }
+
                 // Attempt the compression
                 /* @var $compress Udder_Deflate_Model_Compress */
                 $compress = Mage::getModel('udder_deflate/compress');
@@ -102,7 +108,12 @@ class Udder_Deflate_Adminhtml_DeflateController extends Mage_Adminhtml_Controlle
             // Load an images collection
             /* @var $images Udder_Deflate_Model_Resource_Image_Collection */
             $images = Mage::getResourceModel('udder_deflate/image_collection')
-                ->addFieldToFilter('image_id', array('in' => $ids));
+                ->addFieldToFilter('image_id', array('in' => $ids))
+                ->addFieldToFilter('status', array('in' => array(
+                    Udder_Deflate_Model_Image::STATUS_PENDING,
+                    Udder_Deflate_Model_Image::STATUS_FAILED,
+                    Udder_Deflate_Model_Image::STATUS_REVERTED
+                )));
 
             if ($images->getSize()) {
                 /* @var $compress Udder_Deflate_Model_Compress */
