@@ -17,6 +17,7 @@ Enter the below command into the root of your Magento project (where the compose
 composer config repositories.deflate vcs https://github.com/deflate/magento1.git && composer require deflate/magento1:"dev-master"
 ```
 
+#### Manual Installation
 Alternatively you can add the following repository to your composer.json file manually:
 ```
 {
