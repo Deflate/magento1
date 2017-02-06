@@ -1,0 +1,39 @@
+{
+  "name": "deflate/magento1",
+  "type": "magento-module",
+  "homepage": "https://github.com/deflate/magento1",
+  "description": "Magento 1 module for Deflate image compression.",
+  "authors": [
+    {
+      "name": "Dave Macaulay",
+      "email": "dave@udder.io"
+    }
+  ],
+  "require": {
+    "magento-hackathon/magento-composer-installer": "*"
+  },
+  "extra": {
+    "map": [
+      [
+        "app/etc/modules/Udder_Deflate.xml",
+        "app/etc/modules/Udder_Deflate.xml"
+      ],
+      [
+        "app/code/community/Udder/Deflate/",
+        "app/code/community/Udder/Deflate/"
+      ],
+      [
+        "app/design/adminhtml/default/default/layout/udder/",
+        "app/design/adminhtml/default/default/layout/udder/"
+      ],
+      [
+        "app/design/adminhtml/default/default/template/udder/",
+        "app/design/adminhtml/default/default/template/udder/"
+      ],
+      [
+        "lib/Deflate/",
+        "lib/Deflate/"
+      ]
+    ]
+  }
+}
