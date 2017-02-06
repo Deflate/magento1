@@ -44,20 +44,21 @@ Once that command is completed you'll need to clear your caches and the module w
 The module contains a number of configuration options that can be altered through `System > Configuration > Deflate - Image Compression`. The first step you'll need to take is linking your Deflate account, you can either pull your API key & secret manually from your account or use our account link functionality.
 
 ### Compress Settings
-**Compression Type:** The type of compression you wish to complete on all images found by the module.
+
+Field | Description
+:-----|:----------
+Compression Type | The type of compression you wish to complete on all images found by the module.
 
 ### Compression Areas
 This section allows you to define which images Deflate should automatically compress
 
-**Catalog Images**: Compress all images associated with products or categories.
-
-**Compress Cached Resized Images**: Compress the images which have been resized by Magento for display on the front-end, we suggest leaving this enabled.
-
-**CMS Images**: Compress all images uploaded through the CMS.
-
-**Skin Images**: Compress all the images associated with all themes/skins.
-
-**Skin Package/Themes**: Select which packages & themes you wish to compress, we understand you won't want to compress images in a theme you're not using.
+Field | Description
+:-----|:----------
+Catalog Images | Compress all images associated with products or categories.
+Compress Cached Resized Images | Compress the images which have been resized by Magento for display on the front-end, we suggest leaving this enabled.
+CMS Images | Compress all images uploaded through the CMS.
+Skin Images | Compress all the images associated with all themes/skins.
+Skin Package/Themes | Select which packages & themes you wish to compress, we understand you won't want to compress images in a theme you're not using.
 
 ## How to compress images
 The system will automatically compress images for you in the background via a cron task. Alternatively you can access the interface for the module via `System > Image Compression`.
