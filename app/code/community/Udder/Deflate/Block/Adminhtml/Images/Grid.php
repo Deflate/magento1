@@ -45,96 +45,96 @@ class Udder_Deflate_Block_Adminhtml_Images_Grid extends Mage_Adminhtml_Block_Wid
     {
         $this->addColumn('created_at',
             array(
-                'header'=> $this->__('Created At'),
-                'index' => 'created_at',
-                'type'      => 'datetime',
-                'width' => '130px'
+                'header' => $this->__('Created At'),
+                'index'  => 'created_at',
+                'type'   => 'datetime',
+                'width'  => '130px'
             )
         );
 
         $this->addColumn('compressed_at',
             array(
-                'header'=> $this->__('Compressed At'),
-                'index' => 'compressed_at',
-                'type'      => 'datetime',
-                'width' => '130px'
+                'header' => $this->__('Compressed At'),
+                'index'  => 'compressed_at',
+                'type'   => 'datetime',
+                'width'  => '130px'
             )
         );
 
         $this->addColumn('name',
             array(
-                'header'=> $this->__('File Name'),
-                'index' => 'name'
+                'header' => $this->__('File Name'),
+                'index'  => 'name'
             )
         );
 
         $this->addColumn('magento_type',
             array(
-                'header'=> $this->__('Type'),
-                'index' => 'magento_type',
-                'type' => 'options',
+                'header'  => $this->__('Type'),
+                'index'   => 'magento_type',
+                'type'    => 'options',
                 'options' => Udder_Deflate_Model_Scan::getTypesAsArray()
             )
         );
 
         $this->addColumn('original_size',
             array(
-                'header'=> $this->__('Original Size'),
-                'index' => 'original_size',
-                'filter' => false,
-                'width' => 100,
+                'header'         => $this->__('Original Size'),
+                'index'          => 'original_size',
+                'filter'         => false,
+                'width'          => 100,
                 'frame_callback' => array($this, 'displaySize')
             )
         );
 
         $this->addColumn('deflated_size',
             array(
-                'header'=> $this->__('Deflated Size'),
-                'index' => 'deflated_size',
-                'filter' => false,
-                'width' => 100,
+                'header'         => $this->__('Deflated Size'),
+                'index'          => 'deflated_size',
+                'filter'         => false,
+                'width'          => 100,
                 'frame_callback' => array($this, 'displaySize')
             )
         );
 
         $this->addColumn('difference',
             array(
-                'header'=> $this->__('Difference'),
-                'index' => 'difference',
-                'filter' => false,
-                'width' => 100,
+                'header'         => $this->__('Difference'),
+                'index'          => 'difference',
+                'filter'         => false,
+                'width'          => 100,
                 'frame_callback' => array($this, 'displayPercentage'),
-                'sortable' => false
+                'sortable'       => false
             )
         );
 
         $this->addColumn('status',
             array(
-                'header'=> $this->__('Status'),
-                'index' => 'status',
-                'type' => 'options',
-                'options' => Udder_Deflate_Model_Image::getStatusesAsArray(),
+                'header'         => $this->__('Status'),
+                'index'          => 'status',
+                'type'           => 'options',
+                'options'        => Udder_Deflate_Model_Image::getStatusesAsArray(),
                 'frame_callback' => array($this, 'decorateStatus'),
-                'width' => 140
+                'width'          => 140
             )
         );
 
         $this->addColumn('action',
             array(
-                'header'    =>  $this->__('Action'),
+                'header'    => $this->__('Action'),
                 'width'     => '100px',
                 'type'      => 'action',
                 'getter'    => 'getId',
                 'actions'   => array(
                     array(
-                        'caption'   => $this->__('Compress'),
-                        'url'       => array('base'=> '*/*/compress'),
-                        'field'     => 'id'
+                        'caption' => $this->__('Compress'),
+                        'url'     => array('base' => '*/*/compress'),
+                        'field'   => 'id'
                     ),
                     array(
-                        'caption'   => $this->__('View'),
-                        'url'       => array('base'=> '*/*/view'),
-                        'field'     => 'id'
+                        'caption' => $this->__('View'),
+                        'url'     => array('base' => '*/*/view'),
+                        'field'   => 'id'
                     )
                 ),
                 'filter'    => false,
@@ -153,6 +153,7 @@ class Udder_Deflate_Block_Adminhtml_Images_Grid extends Mage_Adminhtml_Block_Wid
      * @param $row Udder_Deflate_Model_Image
      * @param $column
      * @param $isExport
+     *
      * @return string
      */
     public static function decorateStatus($value, $row, $column, $isExport)
@@ -173,6 +174,7 @@ class Udder_Deflate_Block_Adminhtml_Images_Grid extends Mage_Adminhtml_Block_Wid
                 $class = 'grid-severity-critical';
                 break;
         }
+
         return '<span class="' . $class . '"><span>' . $value . '</span></span>';
     }
 
@@ -183,13 +185,15 @@ class Udder_Deflate_Block_Adminhtml_Images_Grid extends Mage_Adminhtml_Block_Wid
      * @param $row Udder_Deflate_Model_Image
      * @param $column
      * @param $isExport
+     *
      * @return string
      */
     public static function displaySize($value, $row, $column, $isExport)
     {
-        if($value) {
+        if ($value) {
             return Mage::helper('udder_deflate')->readableSize($value);
         }
+
         return '';
     }
 
@@ -200,13 +204,15 @@ class Udder_Deflate_Block_Adminhtml_Images_Grid extends Mage_Adminhtml_Block_Wid
      * @param $row Udder_Deflate_Model_Image
      * @param $column
      * @param $isExport
+     *
      * @return string
      */
     public static function displayPercentage($value, $row, $column, $isExport)
     {
-        if($row->getData('deflated_size')) {
+        if ($row->getData('deflated_size')) {
             return ceil(Mage::helper('udder_deflate')->percentageDifference($row->getData('original_size'), $row->getData('deflated_size'))) . '%';
         }
+
         return '';
     }
 
@@ -219,7 +225,7 @@ class Udder_Deflate_Block_Adminhtml_Images_Grid extends Mage_Adminhtml_Block_Wid
      */
     public function getRowUrl($row)
     {
-        if($row->getData('deflated_size')) {
+        if ($row->getData('deflated_size')) {
             return $this->getUrl('*/*/view', array('id' => $row->getId()));
         }
 

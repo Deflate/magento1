@@ -37,6 +37,7 @@ class Udder_Deflate_Helper_Data extends Mage_Core_Helper_Abstract
                 );
             } catch (Exception $e) {
                 Mage::throwException($e);
+
                 return false;
             }
         }
@@ -48,6 +49,7 @@ class Udder_Deflate_Helper_Data extends Mage_Core_Helper_Abstract
      * Return a human readable size from bytes
      *
      * @param $bytes
+     *
      * @return string
      */
     public function readableSize($bytes)
@@ -68,7 +70,7 @@ class Udder_Deflate_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function percentageDifference($original, $deflated)
     {
-        return number_format((($original - $deflated) / $original * 100),2);
+        return number_format((($original - $deflated) / $original * 100), 2);
     }
 
     /**
@@ -90,12 +92,13 @@ class Udder_Deflate_Helper_Data extends Mage_Core_Helper_Abstract
      * Check whether the found file is accepted by the API
      *
      * @param SplFileInfo|string $file
+     *
      * @return bool
      */
     public function isAccepted($file)
     {
         // Load the file into the SplFileInfo
-        if(!$file instanceof SplFileInfo) {
+        if (!$file instanceof SplFileInfo) {
             $file = new SplFileInfo($file);
         }
 
@@ -114,9 +117,10 @@ class Udder_Deflate_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function isConfigured()
     {
-        if(!Mage::getStoreConfig('udder_deflate/general/api_key') || !Mage::getStoreConfig('udder_deflate/general/api_secret')) {
+        if (!Mage::getStoreConfig('udder_deflate/general/api_key') || !Mage::getStoreConfig('udder_deflate/general/api_secret')) {
             return false;
         }
+
         return true;
     }
 }

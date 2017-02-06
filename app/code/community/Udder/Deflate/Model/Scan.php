@@ -23,8 +23,8 @@ class Udder_Deflate_Model_Scan extends Udder_Deflate_Model_Abstract
     {
         return array(
             self::TYPE_CATALOG => Mage::helper('udder_deflate')->__('Catalog'),
-            self::TYPE_CMS => Mage::helper('udder_deflate')->__('CMS'),
-            self::TYPE_SKIN => Mage::helper('udder_deflate')->__('Skin/Template')
+            self::TYPE_CMS     => Mage::helper('udder_deflate')->__('CMS'),
+            self::TYPE_SKIN    => Mage::helper('udder_deflate')->__('Skin/Template')
         );
     }
 
@@ -32,6 +32,7 @@ class Udder_Deflate_Model_Scan extends Udder_Deflate_Model_Abstract
      * Recursively loop through the file system to find images
      *
      * @param bool|false $returnCount
+     *
      * @return $this|int
      */
     public function findImages($returnCount = false)
@@ -51,13 +52,13 @@ class Udder_Deflate_Model_Scan extends Udder_Deflate_Model_Abstract
             $newImageCount = 0;
 
             // Insert only new rows
-            foreach($images as $image) {
+            foreach ($images as $image) {
                 // Attempt to insert all this juicy data
                 $newImageCount += $dbWrite->insertIgnore($resource->getTableName('udder_deflate/image'), $image);
             }
 
             // Should we return the new images we've found?
-            if($returnCount) {
+            if ($returnCount) {
                 return $newImageCount;
             }
 
@@ -79,18 +80,18 @@ class Udder_Deflate_Model_Scan extends Udder_Deflate_Model_Abstract
         foreach ($dirs as $type => $dir) {
 
             // If the current dir, is actually an array, loop it
-            if(is_array($dir)) {
+            if (is_array($dir)) {
                 $this->iterateDirectories($images, $dir, $type);
                 continue;
             }
 
             // If we've become nested in an associative array, use the parent type
-            if($previousType) {
+            if ($previousType) {
                 $type = $previousType;
             }
 
             // Check the directory is a directory before continuing
-            if(is_dir($dir)) {
+            if (is_dir($dir)) {
 
                 $iterator = new RecursiveIteratorIterator(
                     new RecursiveDirectoryIterator(
@@ -116,15 +117,15 @@ class Udder_Deflate_Model_Scan extends Udder_Deflate_Model_Abstract
 
                         // Build up the required data to easily insert this into the data
                         $images[] = array(
-                            'magento_type' => $type,
-                            'path' => $path,
-                            'name' => $fileName,
+                            'magento_type'   => $type,
+                            'path'           => $path,
+                            'name'           => $fileName,
                             'file_path_hash' => $this->buildHash($path, $fileName),
-                            'file_sha1' => sha1_file($info->getPathname()),
-                            'original_size' => $info->getSize(),
-                            'status' => Udder_Deflate_Model_Image::STATUS_PENDING,
-                            'created_at' => Mage::getSingleton('core/date')->gmtDate(),
-                            'updated_at' => Mage::getSingleton('core/date')->gmtDate()
+                            'file_sha1'      => sha1_file($info->getPathname()),
+                            'original_size'  => $info->getSize(),
+                            'status'         => Udder_Deflate_Model_Image::STATUS_PENDING,
+                            'created_at'     => Mage::getSingleton('core/date')->gmtDate(),
+                            'updated_at'     => Mage::getSingleton('core/date')->gmtDate()
                         );
                     }
                 }
@@ -139,6 +140,7 @@ class Udder_Deflate_Model_Scan extends Udder_Deflate_Model_Abstract
      *
      * @param $path
      * @param $fileName
+     *
      * @return string
      */
     public static function buildHash($path, $fileName)
@@ -150,16 +152,18 @@ class Udder_Deflate_Model_Scan extends Udder_Deflate_Model_Abstract
      * Determine whether or not the image is within an excluded directory
      *
      * @param SplFileInfo $file
+     *
      * @return bool
      */
     public function isAllowedDirectory(SplFileInfo $file)
     {
         $allowed = true;
-        foreach($this->getExcludedImageDirectories() as $directory) {
-            if(strpos($file->getPath(), $directory) !== false) {
+        foreach ($this->getExcludedImageDirectories() as $directory) {
+            if (strpos($file->getPath(), $directory) !== false) {
                 $allowed = false;
             }
         }
+
         return $allowed;
     }
 
@@ -173,12 +177,12 @@ class Udder_Deflate_Model_Scan extends Udder_Deflate_Model_Abstract
         $directories = array();
 
         // If we aren't compressing the resized images we need to exclude the directory
-        if(!$this->compressCatalogResized()) {
+        if (!$this->compressCatalogResized()) {
             $directories[self::TYPE_CATALOG] = Mage::getSingleton('catalog/product_media_config')->getBaseMediaPath() . DS . 'cache';
         }
 
         // Ignore the thumb directory, as it's not utilised on the front-end
-        if($this->compressCms()) {
+        if ($this->compressCms()) {
             $directories[self::TYPE_CMS] = Mage::getBaseDir('media') . DS . 'wysiwyg' . DS . '.thumbs';
         }
 
@@ -206,22 +210,22 @@ class Udder_Deflate_Model_Scan extends Udder_Deflate_Model_Abstract
 
         // Include all files within the skin directory
         if ($this->compressSkin()) {
-            if($templateString = $this->compressSpecificSkin()) {
+            if ($templateString = $this->compressSpecificSkin()) {
 
                 $templates = explode(',', $templateString);
-                foreach($templates as $template) {
+                foreach ($templates as $template) {
 
                     // Retrieve the package and theme from the string
                     list($package, $theme) = explode('[', rtrim($template, ']'));
 
                     // Load the design package
                     $skinBaseDir = Mage::getSingleton('core/design_package')->getSkinBaseDir(array(
-                        '_area' => 'frontend',
+                        '_area'    => 'frontend',
                         '_package' => $package,
-                        '_theme' => $theme
+                        '_theme'   => $theme
                     ));
 
-                    if($skinBaseDir) {
+                    if ($skinBaseDir) {
                         $directories[self::TYPE_SKIN][] = $skinBaseDir;
                     }
                 }

@@ -85,7 +85,8 @@
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <comment><![CDATA[Please select the areas of your application that you would like to enable compression for. <br /><strong>Please note:</strong> Images from previously activated sections will still be displayed within the image compression grid.]]></comment>
+                    <comment>
+                        <![CDATA[Please select the areas of your application that you would like to enable compression for. <br /><strong>Please note:</strong> Images from previously activated sections will still be displayed within the image compression grid.]]></comment>
                     <fields>
 
                         <catalog_heading translate="label">

@@ -29,11 +29,11 @@ class Udder_Deflate_Model_Image extends Mage_Core_Model_Abstract
     public static function getStatusesAsArray()
     {
         return array(
-            self::STATUS_PENDING => Mage::helper('udder_deflate')->__('Pending'),
+            self::STATUS_PENDING     => Mage::helper('udder_deflate')->__('Pending'),
             self::STATUS_COMPRESSING => Mage::helper('udder_deflate')->__('Compressing'),
-            self::STATUS_FAILED => Mage::helper('udder_deflate')->__('Failed'),
-            self::STATUS_COMPLETE => Mage::helper('udder_deflate')->__('Complete'),
-            self::STATUS_REVERTED => Mage::helper('udder_deflate')->__('Reverted')
+            self::STATUS_FAILED      => Mage::helper('udder_deflate')->__('Failed'),
+            self::STATUS_COMPLETE    => Mage::helper('udder_deflate')->__('Complete'),
+            self::STATUS_REVERTED    => Mage::helper('udder_deflate')->__('Reverted')
         );
     }
 
@@ -59,17 +59,18 @@ class Udder_Deflate_Model_Image extends Mage_Core_Model_Abstract
         $compress = Mage::getModel('udder_deflate/compress');
 
         // Does this image has an original url?
-        if(!$this->getData('original_url')) {
+        if (!$this->getData('original_url')) {
             return false;
         }
 
         // Attempt to replace the image
-        if($compress->replaceImage($this, 'original_url')) {
+        if ($compress->replaceImage($this, 'original_url')) {
             $this
                 ->setData('status', self::STATUS_REVERTED)
                 ->setData('deflated_size', NULL)
                 ->setData('deflated_url', NULL)
                 ->save();
+
             return $this;
         } else {
             return false;

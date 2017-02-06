@@ -38,7 +38,7 @@ class Udder_Deflate_Block_Adminhtml_Images_View extends Mage_Core_Block_Template
     public function getTypeLabel($type)
     {
         $types = Udder_Deflate_Model_Scan::getTypesAsArray();
-        if(isset($types[$type])) {
+        if (isset($types[$type])) {
             return $types[$type];
         }
 

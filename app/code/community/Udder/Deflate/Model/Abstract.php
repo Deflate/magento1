@@ -20,14 +20,15 @@ class Udder_Deflate_Model_Abstract extends Mage_Core_Model_Abstract
     /**
      * Log data to a deflate.log
      *
-     * @param $message
+     * @param            $message
      * @param bool|false $data
+     *
      * @return $this
      */
     protected function _log($message, $data = false)
     {
         Mage::log($message, null, 'deflate.log', true);
-        if($data) {
+        if ($data) {
             Mage::log(print_r($data, true), null, 'deflate.log', true);
         }
 
